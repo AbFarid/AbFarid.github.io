@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Clock</title>
+    <link rel="stylesheet" href="main.css" media="screen" charset="utf-8">
+    <script src="http://momentjs.com/downloads/moment-with-locales.min.js"></script>
+    <script src="http://momentjs.com/downloads/moment-timezone-with-data-2010-2020.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.12.1.min.js"></script>
+    <script src="script.js"></script>
+  </head>
+  <body>
+    <div class="background-image"></div>
+    <div class="top">
+      <div class="watch-container">
+        <div class="watch">
+          <div class="hours">
+            <div class="digit-container">
+              <span class="digit" id="hour1">0</span>
+            </div>
+            <div class="digit-container">
+              <span class="digit" id="hour2">0</span>
+            </div>
+          </div>
+          <div class="watch-separator-container">
+            <span class="watch-separator">:</span>
+          </div>
+          <div class="minutes">
+            <div class="digit-container">
+              <span class="digit" id="minute1">0</span>
+            </div>
+            <div class="digit-container">
+              <span class="digit" id="minute2">0</span>
+            </div>
+          </div>
+          <div class="watch-separator-container">
+            <span class="watch-separator">:</span>
+          </div>
+          <div class="seconds">
+            <div class="digit-container">
+              <span class="digit" id="second1">0</span>
+            </div>
+            <div class="digit-container">
+              <span class="digit" id="second2">0</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom">
+    <div class="separator"></div>
+    <div class="selector">
+      <div data-index="0" class="hexagon">&#x2B22;</div>
+      <div class="hex-separator"></div>
+      <div data-index="1" class="hexagon">&#x2B22;</div>
+      <div class="hex-separator"></div>
+      <div data-index="2" class="hexagon">&#x2B22;</div>
+      <div class="hex-separator"></div>
+      <div data-index="3" class="hexagon active">&#x2B22;</div>
+      <div class="hex-separator"></div>
+      <div data-index="4" class="hexagon">&#x2B22;</div>
+      <div class="hex-separator"></div>
+      <div data-index="5" class="hexagon">&#x2B22;</div>
+      <div class="hex-separator"></div>
+      <div data-index="6" class="hexagon">&#x2B22;</div>
+    </div>
+    <div class="names">
+      <div class="country-container"><span class="country">London</span></div>
+      <div class="name-separator"></div>
+      <div class="country-container"><span class="country">Berlin</span></div>
+      <div class="name-separator"></div>
+      <div class="country-container"><span class="country">Kyiv</span></div>
+      <div class="name-separator"></div>
+      <div class="country-container"><span class="country">Victoria</span></div>
+      <div class="name-separator"></div>
+      <div class="country-container"><span class="country">Bangkok</span></div>
+      <div class="name-separator"></div>
+      <div class="country-container"><span class="country">Hong Kong</span></div>
+      <div class="name-separator"></div>
+      <div class="country-container"><span class="country">Tokyo</span></div>
+    </div>
+  </body>
+</html>
