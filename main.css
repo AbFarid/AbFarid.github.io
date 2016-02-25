@@ -102,6 +102,13 @@ body {
     margin-right: -15px;
     text-align: center;
 }
+.unit {
+    font-size: 20px;
+    margin: -15px 0 25px;
+    text-transform: lowercase;
+}
+
+
 .selector {
     font-family: arial;
     text-align: center;

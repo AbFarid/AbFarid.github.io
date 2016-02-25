@@ -96,16 +96,16 @@ function increment(id, format, index) {
 	$(id).clearQueue();
 	if ($(id).html() != zoneTime.format(format)[index] && !$(id).is(':animated'))
 		$(id).animate({
-			'top': '+=50px',
+			'top': '+=30px',
 			'opacity': 0
 		}, config.duration, 'swing', function() {
 			// config.zone = hex.attr('data-index');
 			$(id).html(zoneTime.format(format)[index]);
 			$(id).css({
-				'top': '-=100px'
+				'top': '-=60px'
 			});
 			$(id).animate({
-				'top': '+=50px',
+				'top': '+=30px',
 				'opacity': 1
 			}, config.duration, 'swing', function() {
 				$(id).css({
