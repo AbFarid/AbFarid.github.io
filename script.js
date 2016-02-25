@@ -71,9 +71,14 @@ function detectMacOS() {
 
 $(document).ready(function() {
 
-	if (detectMacOS()) $('.hexagon').addClass('mac');
-	else $('.hexagon').addClass('win') ;
-	
+	if (detectMacOS()) {
+		$('.hexagon').addClass('mac');
+		$('.name-separator').addClass('mac');
+	} else {
+		$('.hexagon').addClass('win');
+		$('.name-separator').addClass('win');
+	}
+
 	$(setTime());
 
 	$('.hexagon').click(function() {

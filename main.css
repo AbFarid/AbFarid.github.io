@@ -96,6 +96,7 @@ body {
     width: 80vw;
     margin: 60px auto 20px;
 }
+
 .names {
     font-family: 'Josefin Sans', sans-serif;
     text-align: center;
@@ -104,16 +105,22 @@ body {
 }
 .name-separator {
     display: inline-block;
-    width: 24px;
     margin: 0px 0px 12px;
+    /* width is defined via jQuery depending on OS */
 }
-.country-container {
+.name-separator.mac {
+    width: 24px;
+}
+.name-separator.win {
+    width: 19px;
+}
+.name-container {
     display: inline-block;
     text-align: center;
     white-space: nowrap;
     width: 60px;
 }
-.country {
+.name {
     margin-left: -100%;
     margin-right: -100%;
     text-align: center;
