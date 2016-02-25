@@ -71,17 +71,49 @@ function setDefaults(val, def) {
 function setTime() {
 	var time = moment();
 	var zoneTime = time.tz(config.cities[config.zone].zone);
-	$('#hour1').html(zoneTime.format('HH')[0]);
-	$('#hour2').html(zoneTime.format('HH')[1]);
-	$('#minute1').html(zoneTime.format('mm')[0]);
-	$('#minute2').html(zoneTime.format('mm')[1]);
-	$('#second1').html(zoneTime.format('ss')[0]);
-	$('#second2').html(zoneTime.format('ss')[1]);
+	// $('#hour1').html(zoneTime.format('HH')[0]);
+	increment('#hour1', 'HH', 0);
+	// $('#hour2').html(zoneTime.format('HH')[1]);
+	increment('#hour2', 'HH', 1);
+	// $('#minute1').html(zoneTime.format('mm')[0]);
+	increment('#minute1', 'mm', 0);
+	// $('#minute2').html(zoneTime.format('mm')[1]);
+	increment('#minute2', 'mm', 1);
+	// $('#second1').html(zoneTime.format('ss')[0]);
+	increment('#second1', 'ss', 0);
+	// $('#second2').html(zoneTime.format('ss')[1]);
+	increment('#second2', 'ss', 1);
 }
 
 $(function() {
 	setInterval(setTime, 1000);
 });
+
+function increment(id, format, index) {
+	var time = moment();
+	var zoneTime = time.tz(config.cities[config.zone].zone);
+
+	$(id).clearQueue();
+	if ($(id).html() != zoneTime.format(format)[index] && !$(id).is(':animated'))
+		$(id).animate({
+			'top': '+=50px',
+			'opacity': 0
+		}, config.duration, 'swing', function() {
+			// config.zone = hex.attr('data-index');
+			$(id).html(zoneTime.format(format)[index]);
+			$(id).css({
+				'top': '-=100px'
+			});
+			$(id).animate({
+				'top': '+=50px',
+				'opacity': 1
+			}, config.duration, 'swing', function() {
+				$(id).css({
+					'top': '0'
+				});
+			});
+		});
+}
 
 function detectMacOS() {
 	return navigator.userAgent.indexOf('Mac OS X') != -1;
@@ -99,7 +131,7 @@ function changeBackground(index) {
 				'background-image': 'url(\'' + 'img/default1.jpg' + '\')'
 			});
 		}
-	}, config.duration);
+	}, config.duration - 50);
 }
 
 $(document).ready(function() {
@@ -124,24 +156,9 @@ $(document).ready(function() {
 
 			$('.active').removeClass('active');
 			hex.addClass('active');
-			$('#watch').parent().animate({
-				'top': '-=50px',
-				'opacity': 0
-			}, config.duration, 'swing', function() {
-				config.zone = hex.attr('data-index');
-				setTime();
-				$('#watch').parent().css({
-					'top': '+=100px'
-				});
-				$('#watch').parent().animate({
-					'top': '-=50px',
-					'opacity': 1
-				}, config.duration, 'swing', function() {
-					$('#watch').parent().css({
-						'top': 'calc(50% - 172px)'
-					});
-				});
-			});
+			config.zone = hex.attr('data-index');
+			increment('#hour1', 'HH', 0);
+			increment('#hour2', 'HH', 1);
 
 			if (config.cityBG) {
 				changeBackground(index);
