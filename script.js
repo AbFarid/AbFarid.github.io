@@ -1,43 +1,50 @@
 var config = {
-	cities: {
-		0: {
-			name: 'London',
-			GMT: 0,
-			zone: 'Europe/London',
-			img: 'img/london-night.jpg'
-		},
-		1: {
-			name: 'Berlin',
-			GMT: 1,
-			zone: 'Europe/Berlin',
-			img: 'img/berlin-night.jpg'
-		},
-		2: {
-			name: 'Kyiv',
-			GMT: 2,
-			zone: 'Europe/Kiev'
-		},
-		3: {
-			name: 'Victoria',
-			GMT: 4,
-			zone: 'Indian/Mahe'
-		},
-		4: {
-			name: 'Bangkok',
-			GMT: 7,
-			zone: 'Asia/Bangkok'
-		},
-		5: {
-			name: 'Hong Kong',
-			GMT: 8,
-			zone: 'Asia/Hong_Kong'
-		},
-		6: {
-			name: 'Tokyo',
-			GMT: 9,
-			zone: 'Asia/Tokyo'
-		}
-	}
+  cities: {
+    0: {
+      name: 'London',
+      GMT: 0,
+      zone: 'Europe/London',
+      img: 'img/london-night.jpg'
+    },
+    1: {
+      name: 'Berlin',
+      GMT: 1,
+      zone: 'Europe/Berlin',
+      img: 'img/berlin-night.jpg'
+    },
+    2: {
+      name: 'Kyiv',
+      GMT: 2,
+      zone: 'Europe/Kiev',
+      img: 'img/kiev-night.jpg'
+    },
+    3: {
+      name: 'Victoria',
+      GMT: 4,
+      zone: 'Indian/Mahe'
+    },
+    4: {
+      name: 'Bangkok',
+      GMT: 7,
+      zone: 'Asia/Bangkok',
+      img: 'img/bangkok-night.jpg'
+    },
+    5: {
+      name: 'Hong Kong',
+      GMT: 8,
+      zone: 'Asia/Hong_Kong',
+      img: 'img/hong_kong-night.jpg'
+    },
+    6: {
+      name: 'Tokyo',
+      GMT: 9,
+      zone: 'Asia/Tokyo',
+      img: 'img/tokyo-night.jpg'
+    }
+  },
+  zone: 3,
+  duration: 250,
+  cityBG: setDefaults(lsGet('cityBG'), true)
 };
 
 // London +0
@@ -48,65 +55,115 @@ var config = {
 // Hong Kong +8
 // Tokyo +9
 
-var zone = 3;
+function lsGet(string) {
+	var temp = localStorage.getItem(string);
+	console.log(temp);
+	if (temp === 'true') return true;
+	else if (temp === 'false') return false;
+	else return temp;
+}
+
+function setDefaults(val, def) {
+	if (def === undefined) def = true;
+	if (val === null) return def;
+	else return val;
+}
 
 function setTime() {
-	var time = moment();
-	var zoneTime = time.tz(config.cities[zone].zone);
-	$('#hour1').html(zoneTime.format('HH')[0]);
-	$('#hour2').html(zoneTime.format('HH')[1]);
-	$('#minute1').html(zoneTime.format('mm')[0]);
-	$('#minute2').html(zoneTime.format('mm')[1]);
-	$('#second1').html(zoneTime.format('ss')[0]);
-	$('#second2').html(zoneTime.format('ss')[1]);
+  var time = moment();
+  var zoneTime = time.tz(config.cities[config.zone].zone);
+  $('#hour1').html(zoneTime.format('HH')[0]);
+  $('#hour2').html(zoneTime.format('HH')[1]);
+  $('#minute1').html(zoneTime.format('mm')[0]);
+  $('#minute2').html(zoneTime.format('mm')[1]);
+  $('#second1').html(zoneTime.format('ss')[0]);
+  $('#second2').html(zoneTime.format('ss')[1]);
 }
 
 $(function() {
-	setInterval(setTime, 1000);
+  setInterval(setTime, 1000);
 });
 
 function detectMacOS() {
-	return navigator.userAgent.indexOf('Mac OS X') != -1;
+  return navigator.userAgent.indexOf('Mac OS X') != -1;
+}
+
+function changeBackground(dir) {
+  $('#background').css({
+    'background-image': 'url(\'' + dir + '\')'
+  });
 }
 
 $(document).ready(function() {
 
-	if (detectMacOS()) {
-		$('.hexagon').addClass('mac');
-		$('.name-separator').addClass('mac');
-	} else {
-		$('.hexagon').addClass('win');
-		$('.name-separator').addClass('win');
+  if (detectMacOS()) {
+    $('.hexagon').addClass('mac');
+    $('.name-separator').addClass('mac');
+  } else {
+    $('.hexagon').addClass('win');
+    $('.name-separator').addClass('win');
+  }
+
+  $(setTime());
+	if (config.cityBG !== null) {
+		$('#cityBG').prop('checked', config.cityBG);
 	}
 
-	$(setTime());
+  $('.hexagon').click(function() {
+    if (!$(this).hasClass('active')) {
+      var hex = $(this);
+      var index = hex.attr('data-index');
 
-	$('.hexagon').click(function() {
-		var hex = $(this);
-		var index = hex.attr('data-index');
-		var duration = 250;
-		$('.active').removeClass('active');
-		hex.addClass('active');
-		$('#watch').parent().animate({
-			'top': '-=50px',
-			'opacity': 0
-		}, duration, 'swing', function() {
-			zone = hex.attr('data-index');
-			setTime();
-			$('#watch').parent().css({
-				'top': '+=100px'
-			});
-			$('#watch').parent().animate({
-				'top': '-=50px',
-				'opacity': 1
-			}, duration, 'swing');
-		});
-		
-		if (config.cities[index].img) {
-			$('.background-image').css({
-				'background-image': 'url(\'' + config.cities[index].img + '\')'
-			});
-		}
-	});
-		// console.log();
+      $('.active').removeClass('active');
+      hex.addClass('active');
+      $('#watch').parent().animate({
+        'top': '-=50px',
+        'opacity': 0
+      }, config.duration, 'swing', function() {
+        config.zone = hex.attr('data-index');
+        setTime();
+        $('#watch').parent().css({
+          'top': '+=100px'
+        });
+        $('#watch').parent().animate({
+          'top': '-=50px',
+          'opacity': 1
+        }, config.duration, 'swing', function() {
+          $('#watch').parent().css({
+            'top': 'calc(50% - 172px)'
+          });
+        });
+      });
+
+      setTimeout(function() {
+        if (config.cities[index].img) {
+          changeBackground(config.cities[index].img);
+        } else {
+          changeBackground('img/default1.jpg');
+        }
+      }, config.duration);
+
+    }
+  });
+
+  $('#cityBG').click(function() {
+    if ($(this).prop('checked')) {
+      config.cityBG = false;
+      localStorage.setItem('cityBG', false);
+    } else {
+      config.cityBG = true;
+      localStorage.setItem('cityBG', true);
+    }
+
+  });
+
+  $(document).on("mousemove", function(event) {
+    if (event.pageX < 20) {
+      $('#drawer').addClass('open');
+    } else if ($('#drawer').hasClass('open') && event.pageX > 250) {
+      $('#drawer').removeClass('open');
+    }
+  });
+
+  // console.log();
 });
