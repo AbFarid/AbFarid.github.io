@@ -101,7 +101,7 @@ $(document).ready(function() {
 				'opacity': 1
 			}, duration, 'swing');
 		});
-		console.log(config.cities[index].img);
+		
 		if (config.cities[index].img) {
 			$('.background-image').css({
 				'background-image': 'url(\'' + config.cities[index].img + '\')'

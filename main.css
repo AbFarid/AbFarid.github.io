@@ -22,7 +22,7 @@ body {
     width: 100vw;
     transform: scale(1.1);
     /*top: -1vh; bottom: -1vh; left: -1vw; right: -1vw;*/
-    background-image: url('http://wallpaperlayer.com/img/2015/9/dark-wallpaper-2161-2322-hd-wallpapers.jpg');
+    background-image: url('img/default1.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
