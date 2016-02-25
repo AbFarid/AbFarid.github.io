@@ -65,8 +65,8 @@ $(function() {
 	setInterval(setTime, 1000);
 });
 
-function switchZone() {
-
+function detectMacOS() {
+	return navigator.userAgent.indexOf('Mac OS X') != -1;
 }
 
 $(document).ready(function() {
@@ -99,7 +99,6 @@ $(document).ready(function() {
 				'background-image': 'url(\'' + config.cities[index].img + '\')'
 			});
 		}
-		// console.log($(this).attr('data-index'));
 	});
-
+		console.log(detectMacOS());
 });
