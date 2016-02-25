@@ -71,6 +71,9 @@ function detectMacOS() {
 
 $(document).ready(function() {
 
+	if (detectMacOS()) $('.hexagon').addClass('mac');
+	else $('.hexagon').addClass('win') ;
+	
 	$(setTime());
 
 	$('.hexagon').click(function() {
@@ -100,5 +103,5 @@ $(document).ready(function() {
 			});
 		}
 	});
-		console.log(detectMacOS());
+		// console.log();
 });

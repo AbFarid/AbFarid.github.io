@@ -130,8 +130,15 @@ body {
     -webkit-transform: rotate(90deg);
     -webkit-text-stroke: 2px white;
     transition: color 0.2s;
+    /* margin is defined via jQuery depending on OS */
+}
+.hexagon.mac {
     margin: 0px -10px 0 -2px;
 }
+.hexagon.win {
+  margin: 0px -6px 0 -6px;
+}
+
 .hexagon:hover {
     color: rgba(255, 255, 255, 1);
 }
