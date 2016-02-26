@@ -54,7 +54,7 @@ body {
     width: 100vw
 }
 .separator {
-    width: 98vw;
+    width: 100vw;
     height: 2px;
     background-color: white;
     margin: auto;
@@ -66,7 +66,7 @@ body {
     margin: auto;
     text-align: center;
     white-space: nowrap;
-    top: calc(50% - 172px);
+    top: calc(50% - 210px);
     left: calc(50vw - 255px);
 }
 #watch {
@@ -104,33 +104,86 @@ body {
 }
 .unit {
     font-size: 20px;
-    margin: -15px 0 25px;
+    margin: -18px 0 18px;
     text-transform: lowercase;
 }
 
+.date-container {
+  display: block;
+  position: absolute;
+  width: 510px;
+  margin: auto;
+  text-align: center;
+  white-space: nowrap;
+  top: calc(50% - 15px);
+  left: calc(50vw - 255px);
+}
+.date {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 25px;
+  text-align: center;
+}
+.date-part > div {
+    position: relative;
+    margin-left: -100%;
+    margin-right: -100%;
+    text-align: center;
+}
+.date-part {
+  display: inline-block;
+  text-align: center;
+  white-space: nowrap;
+  width: 100px;
+}
+.date-seporator {
+  display: inline-block;
+  position: relative;
+  bottom: 2px;
+}
+#dayAndMonth > span {
+  position: relative;
+}
+/*#dayOfWeek {
+  margin-right: 14px;
+}
+#dayOfMonth {
+  margin-left: 14px;
+}
+#month {
+  margin-right: 14px;
+}
+#year {
+  margin-left: 14px;
+}*/
+
+    /* -- Bottom -- */
 
 .selector {
     font-family: arial;
     text-align: center;
-    width: 80vw;
-    margin: 60px auto 20px;
+    min-width: 585px;
+    /*width: 80vw;*/
+    margin: 10px auto 10px;
 }
 
 .names {
     font-family: 'Josefin Sans', sans-serif;
     text-align: center;
-    width: 80vw;
+    min-width: 585px;
+    /*width: 80vw;*/
     margin: auto;
+    opacity: 0;
+    transition: all 0.3s;
 }
 .name-separator {
     display: inline-block;
     margin: 0px 0px 12px;
     /* width is defined via jQuery depending on OS */
 }
-.name-separator.mac {
+.mac .name-separator {
     width: 24px;
 }
-.name-separator.win {
+.win .name-separator {
     width: 19px;
 }
 .name-container {
@@ -140,6 +193,42 @@ body {
     width: 60px;
 }
 .name {
+    margin-left: -100%;
+    margin-right: -100%;
+    text-align: center;
+}
+
+.zones {
+    position: relative;
+    font-family: 'Josefin Sans', sans-serif;
+    text-align: center;
+    min-width: 585px;
+    /*width: 80vw;*/
+    margin: 40px 0 0;
+    opacity: 0;
+    transition: all 0.3s;
+}
+.opaque {
+  opacity: 1 !important;
+}
+.zone-separator {
+    display: inline-block;
+    margin: 0px 0px 12px;
+    /* width is defined via jQuery depending on OS */
+}
+.mac .zone-separator {
+    width: 24px;
+}
+.win .zone-separator {
+    width: 19px;
+}
+.zone-container {
+    display: inline-block;
+    text-align: center;
+    white-space: nowrap;
+    width: 60px;
+}
+.zone {
     margin-left: -100%;
     margin-right: -100%;
     text-align: center;
@@ -158,10 +247,10 @@ body {
     transition: color 0.2s;
     /* margin is defined via jQuery depending on OS */
 }
-.hexagon.mac {
+.mac .hexagon {
     margin: 0px -10px 0 -2px;
 }
-.hexagon.win {
+.win .hexagon {
   margin: 0px -6px 0 -6px;
 }
 
@@ -201,17 +290,35 @@ body {
   font-size: 16px;
 }
 .menu-item {
-  padding: 20px;
+  padding: 15px;
   /*border-bottom: 2px solid rgba(0, 0, 0, 0.7);*/
-  -webkit-transition: background-color 0.5s;
-  -o-transition: background-color 0.5s;
-  transition: background-color 0.5s;
+  -webkit-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
 }
 .menu-item:hover {
   background-color: rgba(255, 255, 255, 0.2);
 }
 .menu-item input[type=checkbox] {
   margin-top: 2px;
+}
+.menu-list input[type=text] {
+  -webkit-appearence: none;
+  -webkit-user-select: text;
+  border: none;
+  background: none;
+  outline: none;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 16px;
+  color: white;
+  border-bottom: 1px solid white;
+  text-align: center;
+  -webkit-transition: border-color 0.5s;
+  -o-transition: border-color 0.5s;
+  transition: border-color 0.5s;
+}
+.menu-list input[type=text]:focus {
+  border-bottom-color: #1E88E5;
 }
 
 .pull-right {

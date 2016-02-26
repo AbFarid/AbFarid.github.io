@@ -42,9 +42,12 @@ var config = {
 			img: 'img/tokyo-night.jpg'
 		}
 	},
+	ticker: setDefaults(lsGet('ticker'), 100),
 	zone: 3,
 	duration: 250,
-	cityBG: setDefaults(lsGet('cityBG'), true)
+	cityBG: setDefaults(lsGet('cityBG'), false),
+	hideNames: setDefaults(lsGet('hideNames'), false),
+	hideTZ: setDefaults(lsGet('hideTZ'), false)
 };
 
 // London +0
@@ -54,6 +57,10 @@ var config = {
 // Bangkok +7
 // Hong Kong +8
 // Tokyo +9
+
+function lsSet(name, value) {
+	localStorage.setItem(name, value);
+}
 
 function lsGet(string) {
 	var temp = localStorage.getItem(string);
@@ -83,10 +90,30 @@ function setTime() {
 	increment('#second1', 'ss', 0);
 	// $('#second2').html(zoneTime.format('ss')[1]);
 	increment('#second2', 'ss', 1);
+
+	incrementDate('#dayOfWeek', 'dddd');
+	incrementDate('#dayOfMonth', 'Mo');
+	incrementDate('#month', 'MMMM');
+	incrementDate('#year', 'YYYY');
+	// $('#dayOfWeek').html(zoneTime.format('dddd'));
+	// $('#dayAndMonth').html(zoneTime.format('Mo' + ' of ') + zoneTime.format('MMMM'));
+	// $('#dayOfMonth').html(zoneTime.format('Mo'));
+	// $('#month').html(zoneTime.format('MMMM'));
+	// $('#year').html(zoneTime.format('YYYY'));
+}
+
+var clockwork;
+
+function resetClockwork() {
+	clearInterval(clockwork);
+	clockwork = setInterval(setTime, config.ticker);
 }
 
 $(function() {
-	setInterval(setTime, 1000);
+	clockwork = setInterval(setTime, 100);
+	setTimeout(function(){
+		resetClockwork();
+	}, 1100);
 });
 
 function increment(id, format, index) {
@@ -106,6 +133,32 @@ function increment(id, format, index) {
 			});
 			$(id).animate({
 				'top': '+=30px',
+				'opacity': 1
+			}, config.duration, 'swing', function() {
+				$(id).css({
+					'top': '0'
+				});
+			});
+		});
+}
+
+function incrementDate(id, format) {
+	var time = moment();
+	var zoneTime = time.tz(config.cities[config.zone].zone);
+
+	$(id).clearQueue();
+	if ($(id).html() != zoneTime.format(format) && !$(id).is(':animated'))
+		$(id).animate({
+			'top': '+=15px',
+			'opacity': 0
+		}, config.duration, 'swing', function() {
+			// config.zone = hex.attr('data-index');
+			$(id).html(zoneTime.format(format));
+			$(id).css({
+				'top': '-=30px'
+			});
+			$(id).animate({
+				'top': '+=15px',
 				'opacity': 1
 			}, config.duration, 'swing', function() {
 				$(id).css({
@@ -137,17 +190,39 @@ function changeBackground(index) {
 $(document).ready(function() {
 
 	if (detectMacOS()) {
-		$('.hexagon').addClass('mac');
-		$('.name-separator').addClass('mac');
+		$('body').addClass('mac');
 	} else {
-		$('.hexagon').addClass('win');
-		$('.name-separator').addClass('win');
+		$('body').addClass('win');
 	}
+
+ // Apply settings to UI;
 
 	$(setTime());
 	if (config.cityBG !== null) {
 		$('#cityBG').prop('checked', config.cityBG);
 	}
+	if (config.hideNames !== null) {
+		if (config.hideNames) $('.names').css({ opacity: 0 });
+		else  $('.names').css({ opacity: 1 });
+		$('#hideNames').prop('checked', config.hideNames);
+	}
+	if (config.hideTZ !== null) {
+		if (config.hideTZ) $('.zones').css({ opacity: 0 });
+		else  $('.zones').css({ opacity: 1 });
+		$('#hideTZ').prop('checked', config.hideTZ);
+	}
+	$('#ticker').val(config.ticker);
+
+	for (var i in config.cities) {
+		$('.name[data-index=' + i + ']').html(config.cities[i].name);
+		if (config.cities[i].GMT === 0)
+		$('.zone[data-index=' + i + ']').html('<span style="font-size: 14px">UTC</span>');
+		else
+		$('.zone[data-index=' + i + ']').html('<span style="font-size: 14px">GMT</span> +' + config.cities[i].GMT);
+	}
+
+
+	// click handlers
 
 	$('.hexagon').click(function() {
 		if (!$(this).hasClass('active')) {
@@ -170,16 +245,55 @@ $(document).ready(function() {
 	$('#cityBG').click(function() {
 		if ($(this).prop('checked')) {
 			config.cityBG = true;
-			localStorage.setItem('cityBG', true);
+			lsSet('cityBG', true);
 			changeBackground();
 		} else {
 			config.cityBG = false;
-			localStorage.setItem('cityBG', false);
+			lsSet('cityBG', false);
 			$('#background').css({
 				'background-image': 'url(\'' + 'img/default1.jpg' + '\')'
 			});
 		}
+	});
 
+	$('#hideNames').click(function(){
+		if ($(this).prop('checked')) {
+			config.hideNames = true;
+			lsSet('hideNames', true);
+			$('.names').css({ opacity: 0 });
+		} else {
+			config.hideNames = false;
+			lsSet('hideNames', false);
+			$('.names').css({ opacity: 1 });
+		}
+	});
+
+	$('#hideTZ').click(function(){
+		if ($(this).prop('checked')) {
+			config.hideTZ = true;
+			lsSet('hideTZ', true);
+			$('.zones').css({ opacity: 0 });
+		} else {
+			config.hideTZ = false;
+			lsSet('hideTZ', false);
+			$('.zones').css({ opacity: 1 });
+		}
+	});
+
+	// hover handlers
+
+	$('.selector').hover(function(){
+		$('.zones').addClass('opaque');
+		$('.names').addClass('opaque');
+	}, function(){
+		$('.zones').removeClass('opaque');
+		$('.names').removeClass('opaque');
+	});
+
+	$('#ticker').change(function(){
+		config.ticker = $(this).val();
+		lsSet('ticker', $(this).val());
+		resetClockwork();
 	});
 
 	$(document).on("mousemove", function(event) {
