@@ -92,7 +92,7 @@ function setTime() {
 	increment('#second2', 'ss', 1);
 
 	incrementDate('#dayOfWeek', 'dddd');
-	incrementDate('#dayOfMonth', 'Mo');
+	incrementDate('#dayOfMonth', 'Do');
 	incrementDate('#month', 'MMMM');
 	incrementDate('#year', 'YYYY');
 	// $('#dayOfWeek').html(zoneTime.format('dddd'));
