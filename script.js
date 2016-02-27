@@ -1,3 +1,5 @@
+jQuery.fx.interval = 33;
+
 var config = {
 	cities: {
 		0: {
