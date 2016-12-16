@@ -1,0 +1,154 @@
+body {
+	background-image: url('https://wordsfromthewhiteroom.files.wordpress.com/2013/01/a_very_white_room_by_stylewalker.jpg');
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+.wrap {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 97vh;
+	width: 97vw;
+	perspective: 800px;
+	perspective-origin: 55% 200px;
+
+	/*padding: 260px;*/
+}
+section {
+	margin: 0;
+	transform-style: preserve-3d;
+}
+.cube {
+	position: relative;
+	width: 300px;
+	height: 300px;
+	transform: rotateY(0deg);
+	transition: all .5s;
+}
+.cube figure {
+	position: absolute;
+	margin: 0;
+	vertical-align: middle;
+	text-align: center;
+	background-color: rgba(50, 50, 50, 1);
+	color: white;
+}
+#middle {
+	transform: translateY(100px);
+}
+#bottom {
+	transform: translateY(200px);
+}
+#top, #middle, #bottom {
+  transform-origin: 150px;
+	transition: all .3s;
+}
+.top, .bottom {
+	width: 300px;
+	height: 300px;
+	line-height: 300px;
+}
+.front, .back, .left, .right {
+	width: 300px;
+	height: 100px;
+	line-height: 100px;
+}
+.front {
+	transform: translateZ(150px);
+}
+.back {
+	transform: translateZ(-150px) rotateY(180deg);
+}
+.top {
+	transform: translateY(-150px) rotateX(90deg);
+}
+.bottom {
+	transform: translateY(-50px) rotateX(-90deg);
+}
+.left {
+	transform: translateX(-150px) rotateY(-90deg);
+}
+.right {
+	transform: translateX(150px) rotateY(90deg);
+}
+.side {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	flex-wrap: wrap;
+}
+.piece {
+	height: 94px;
+	width: 94px;
+	border-radius: 5px;
+}
+.front .piece {
+	background-color: red;
+}
+.back .piece {
+	background-color: orange;
+}
+.left .piece {
+	background-color: green;
+}
+.right .piece {
+	background-color: blue;
+}
+.top .piece {
+	background-color: white;
+}
+.bottom .piece {
+	background-color: yellow;
+}
+/*add shine*/
+
+#top .bottom, #middle .top, #middle .bottom, #bottom .top {
+	box-shadow: 0 0 20px 1px rgba(255, 255, 255, 0.3) inset;
+}
+
+/*animations*/
+.cube:hover {
+	/*transform: translateY(-35px);*/
+}
+@keyframes rotate-segment {
+  0%  { transform: translateY(0px); }
+  20% { transform: rotateY(90deg); }
+	25% { transform: rotateY(90deg); }
+	45% { transform: rotateY(180deg); }
+	50% { transform: rotateY(180deg); }
+	70% { transform: rotateY(270deg); }
+	75% { transform: rotateY(270deg); }
+	95% { transform: rotateY(360deg); }
+	100% { transform: translateY(0px) rotateY(0deg); }
+}
+@keyframes rotate-segment-reverse {
+  0%  { transform: translateY(200px); }
+  20% { transform: translateY(200px) rotateY(-90deg); }
+	25% { transform: translateY(200px) rotateY(-90deg); }
+	45% { transform: translateY(200px) rotateY(-180deg); }
+	50% { transform: translateY(200px) rotateY(-180deg); }
+	70% { transform: translateY(200px) rotateY(-270deg); }
+	75% { transform: translateY(200px) rotateY(-270deg); }
+	95% { transform: translateY(200px) rotateY(-360deg); }
+	100% { transform: translateY(200px); }
+}
+@keyframes spin-cube {
+	0% { transform: translateY(0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
+	25% { transform: translateY(50px) rotateX(180deg) rotateY(90deg) rotateZ(180deg); }
+	50% { transform: translateY(0px) rotateX(360deg) rotateY(180deg) rotateZ(360deg); }
+	75%  { transform: translateY(50px) rotateX(540deg) rotateY(270deg) rotateZ(540deg); }
+	100% { transform: translateY(0px) rotateX(720deg) rotateY(360deg) rotateZ(720deg); }
+}
+.cube #top {
+	/*transform: translateY(-100px) rotateY(90deg);*/
+	animation: rotate-segment 5s infinite;
+}
+.cube #bottom {
+	/*transform: translateY(-100px) rotateY(90deg);*/
+	animation: rotate-segment-reverse 5s infinite;
+	animation-delay: .5s;
+}
+.cube {
+	animation: spin-cube 20s infinite linear;
+}
