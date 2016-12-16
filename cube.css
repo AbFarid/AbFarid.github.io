@@ -23,7 +23,7 @@ section {
 	position: relative;
 	width: 300px;
 	height: 300px;
-	transform: rotateY(0deg);
+	transform: rotateY(0deg) translateZ(-300px);
 	transition: all .5s;
 }
 .cube figure {
@@ -134,11 +134,11 @@ section {
 	100% { transform: translateY(200px); }
 }
 @keyframes spin-cube {
-	0% { transform: translateY(0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
-	25% { transform: translateY(50px) rotateX(180deg) rotateY(90deg) rotateZ(180deg); }
-	50% { transform: translateY(0px) rotateX(360deg) rotateY(180deg) rotateZ(360deg); }
-	75%  { transform: translateY(50px) rotateX(540deg) rotateY(270deg) rotateZ(540deg); }
-	100% { transform: translateY(0px) rotateX(720deg) rotateY(360deg) rotateZ(720deg); }
+	0% { transform: translateZ(-300px) translateY(0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
+	25% { transform: translateZ(-300px) translateY(50px) rotateX(180deg) rotateY(90deg) rotateZ(180deg); }
+	50% { transform: translateZ(-300px) translateY(0px) rotateX(360deg) rotateY(180deg) rotateZ(360deg); }
+	75%  { transform: translateZ(-300px) translateY(50px) rotateX(540deg) rotateY(270deg) rotateZ(540deg); }
+	100% { transform: translateZ(-300px) translateY(0px) rotateX(720deg) rotateY(360deg) rotateZ(720deg); }
 }
 .cube #top {
 	/*transform: translateY(-100px) rotateY(90deg);*/
