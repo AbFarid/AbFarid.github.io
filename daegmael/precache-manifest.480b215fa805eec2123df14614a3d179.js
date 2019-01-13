@@ -60,12 +60,12 @@ self.__precacheManifest = [
     "url": "/daegmael/img/button_hover.6aa1d38f.png"
   },
   {
-    "revision": "b26d94d69884a5aa224826ada4cb1107",
-    "url": "/daegmael/img/button_active.b26d94d6.png"
-  },
-  {
     "revision": "2577134973e6fa3dc40c893880d850aa",
     "url": "/daegmael/img/button_disabled.25771349.png"
+  },
+  {
+    "revision": "b26d94d69884a5aa224826ada4cb1107",
+    "url": "/daegmael/img/button_active.b26d94d6.png"
   },
   {
     "revision": "52cf7068da60a603916de4c8d29af8cc",
