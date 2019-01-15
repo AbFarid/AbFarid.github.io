@@ -1,15 +1,23 @@
 self.__precacheManifest = [
   {
-    "revision": "36d6672adcdee2573292",
-    "url": "/daegmael/css/app.bd6c5672.css"
+    "revision": "bba8649c2afbfd3f786a",
+    "url": "/daegmael/css/app.c1e76ba2.css"
   },
   {
-    "revision": "36d6672adcdee2573292",
-    "url": "/daegmael/js/app.3ca91fa0.js"
+    "revision": "bba8649c2afbfd3f786a",
+    "url": "/daegmael/js/app.d8de9753.js"
   },
   {
-    "revision": "ebcf0e69766bfd281262",
-    "url": "/daegmael/js/chunk-vendors.b9d16972.js"
+    "revision": "71ad8edcb40696519e9b",
+    "url": "/daegmael/css/chunk-vendors.ef62ec55.css"
+  },
+  {
+    "revision": "71ad8edcb40696519e9b",
+    "url": "/daegmael/js/chunk-vendors.dd0a0742.js"
+  },
+  {
+    "revision": "a5fb67d5cec36456a1448af748a31765",
+    "url": "/daegmael/img/Vue_logo.a5fb67d5.png"
   },
   {
     "revision": "6d230dd890a17d8c2b4a4a591d95ef53",
@@ -36,6 +44,14 @@ self.__precacheManifest = [
     "url": "/daegmael/fonts/orange_kid.a64c326c.ttf"
   },
   {
+    "revision": "6b99ce3234f98fb971ac6e4fb48b74a1",
+    "url": "/daegmael/img/GitHub_mark.6b99ce32.png"
+  },
+  {
+    "revision": "5e16e04d5cfb130932edb31a7bb8adb6",
+    "url": "/daegmael/img/led_mini_dark.5e16e04d.png"
+  },
+  {
     "revision": "0476c5cbc3633e1d5528d7341f73598f",
     "url": "/daegmael/img/crown.0476c5cb.png"
   },
@@ -60,12 +76,24 @@ self.__precacheManifest = [
     "url": "/daegmael/img/button_hover.6aa1d38f.png"
   },
   {
+    "revision": "b26d94d69884a5aa224826ada4cb1107",
+    "url": "/daegmael/img/button_active.b26d94d6.png"
+  },
+  {
     "revision": "2577134973e6fa3dc40c893880d850aa",
     "url": "/daegmael/img/button_disabled.25771349.png"
   },
   {
-    "revision": "b26d94d69884a5aa224826ada4cb1107",
-    "url": "/daegmael/img/button_active.b26d94d6.png"
+    "revision": "5df0bcfa28d7b922a6a52e9272312c24",
+    "url": "/daegmael/img/ornament.5df0bcfa.png"
+  },
+  {
+    "revision": "ec27b7316abe6d6385909d5e4e442d34",
+    "url": "/daegmael/img/led_mini_light.ec27b731.png"
+  },
+  {
+    "revision": "780a160801908345a1570fac81f99b2e",
+    "url": "/daegmael/img/kingdom_crown.780a1608.png"
   },
   {
     "revision": "52cf7068da60a603916de4c8d29af8cc",
@@ -76,7 +104,7 @@ self.__precacheManifest = [
     "url": "/daegmael/img/banner.d9f179e3.png"
   },
   {
-    "revision": "a686eebc2fe42cc5aefffb110434ee87",
+    "revision": "5c7c031dddfa15f1fb0ebc3d3b30ca22",
     "url": "/daegmael/index.html"
   },
   {

@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/daegmael/precache-manifest.480b215fa805eec2123df14614a3d179.js"
+  "/daegmael/precache-manifest.683e6a9668454eddb9983f25a37673ff.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "daegmael"});
